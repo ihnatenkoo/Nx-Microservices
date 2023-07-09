@@ -2,7 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 import { IUser, UserRole } from '@nx-microservices/interfaces';
 
-@Schema()
+@Schema({ collection: 'users' })
 export class UserModel extends Document implements IUser {
   @Prop()
   displayName?: string;
