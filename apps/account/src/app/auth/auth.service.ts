@@ -3,8 +3,8 @@ import { JwtService } from '@nestjs/jwt';
 import { UserRole } from '@nx-microservices/interfaces';
 import { UserRepository } from '../user/repositories/user.repository';
 import { UserEntity } from '../user/entities/user.entity';
-import { RegisterDto } from './auth.controller';
 import { WRONG_CREDENTIAL } from '../constants';
+import { AccountRegister } from '@nx-microservices/contracts';
 
 @Injectable()
 export class AuthService {
@@ -13,7 +13,7 @@ export class AuthService {
     private readonly jwtService: JwtService
   ) {}
 
-  async register({ email, password, displayName }: RegisterDto) {
+  async register({ email, password, displayName }: AccountRegister.Request) {
     const user = await this.userRepository.findUser(email);
 
     if (user) {
